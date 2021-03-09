@@ -6,11 +6,10 @@ fun main(args: Array<String>){
     var input: String
     do {
         addTwoNumbers()
-        print("     If you want to add another two numbers, enter '1',\n     If you want to quit, enter '0': ")
+        print("\tIf you want to add another two numbers, enter '1',\n\tIf you want to quit, enter '0': ")
         input = readLine().toString()
     } while (input != "0")
-
-
+    
 }
 
 fun addTwoNumbers(){
@@ -22,13 +21,11 @@ fun addTwoNumbers(){
 
     if(isNumber(a) && isNumber(b) ){
         println("All right, let's see what we got here.")
-        print("Result: ")
-        println(addValuesOfString(a.toInt(), b.toInt()) + "\n")
+        println(Executor.addValuesOfString(a.toInt(), b.toInt()) + "\n")
     }
     else{
         println("Ouch, you lied to me! Your entered numbers have been NOT only numbers. Look what we got...")
-        print("Result: ")
-        println(addValuesOfString(a, b) + "\n")
+        println(Executor.addValuesOfString(a, b) + "\n")
     }
 
 }
@@ -49,12 +46,21 @@ fun isNumber(string: String) : Boolean{
     return true
 }
 
-fun addValuesOfString(string1: String, string2: String) : String {
-    return (string1+string2)
+
+class Executor {
+    companion object{
+        fun addValuesOfString(int1: Int, int2: Int) : String {
+            val result = int1 + int2
+            when(result%2){
+                0 -> println("Result is even number")
+                1 -> println("Result is odd number")
+                -1 -> println("Result is odd number")
+            }
+            return ("Result: " + result.toString())
+        }
+    }
 }
 
-fun addValuesOfString(int1: Int, int2: Int) : String {
-    return ((int1 + int2).toString())
+fun Executor.Companion.addValuesOfString(string1: String, string2: String) : String {
+    return ("Result: " + string1 + string2)
 }
-
-
