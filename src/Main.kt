@@ -1,16 +1,41 @@
 import java.lang.Integer.parseInt
 import java.lang.NumberFormatException
 
-fun main(args: Array<String>){
+fun main(args: Array<String>) {
 
+    GetMenuItem("\tMenu\n" +
+            "1. Add two integers\n" +
+            "2. Something else\n" +
+            "3. Exit\n"
+            + "Enter 1, 2 or 3:")
+}
+
+fun GetMenuItem(text: String){
+    while(true){
+        println("$text")
+        when(readLine()!!.trim()){
+            "1" -> FirstMenuItem()
+            "2" -> println("It's the second menu item\n")
+            "3" -> break
+            else -> {
+                print("Wrong input! Try again: \n")
+                continue
+            }
+        }
+    }
+}
+
+fun FirstMenuItem(){
     var input: String
     do {
         addTwoNumbers()
         print("\tIf you want to add another two numbers, enter '1',\n\tIf you want to quit, enter '0': ")
         input = readLine().toString()
+        println()
     } while (input != "0")
-    
 }
+
+
 
 fun addTwoNumbers(){
     println("Here you can add two integers.")
